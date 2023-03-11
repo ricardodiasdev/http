@@ -1,28 +1,44 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 
 const Filme = ({ data }) => {
   let { nome, sinopse, foto } = data;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.nome}>{nome}</Text>
-      <Image style={styles.imagem} source={{ uri: foto }} resizeMode="cover" />
-      <Text style={styles.sinopse}>{sinopse}</Text>
+    <View>
+      <View style={styles.card}>
+        <Text style={styles.nome}>{nome}</Text>
+        <Image
+          style={styles.imagem}
+          source={{ uri: foto }}
+          resizeMode="cover"
+        />
+        <View style={styles.btnArea}>
+          <TouchableOpacity style={styles.btn}>
+            <Text style={styles.btnText}>Leia mais</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
+  card: {
+    shadowColor: "#000",
+    backgroundColor: "##FFF",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    margin: 15,
+    shadowRadius: 5,
+    borderRadius: 5,
+    elevation: 3,
   },
   nome: {
-    marginTop: 15,
-    fontSize: 22,
-    textAlign: "center",
+    fontSize: 18,
     color: "black",
     fontWeight: "bold",
+    padding: 15,
   },
   sinopse: {
     fontSize: 12,
@@ -31,9 +47,29 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   imagem: {
-    flex: 1,
-    height: 400,
-    alignItems: "center",
+    height: 250,
+    zIndex: 2,
+    margin: 5
+  },
+  btnArea: {
+    alignItems: "flex-end",
+    marginTop: -45,
+    zIndex: 9,
+    margin: 7,
+  },
+  btn: {
+    width: 100,
+    backgroundColor: "#09A6FF",
+    opacity: 1,
+    padding: 8,
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
+    marginBottom: -5
+
+  },
+  btnText: {
+    textAlign: "center",
+    color: "#fff",
   },
 });
 
